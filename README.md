@@ -1,8 +1,6 @@
-# [New Architecture Example](https://reactnative.dev/docs/the-new-architecture/landing-page)
+# Padding regression on RNGH buttons in new arch on iOS
 
-## 🚀 How to use
-
-> `npx create-expo-app@latest -e with-new-arch`
-
-- Install packages with `yarn` or `npm install`.
-- Run `npx expo run:ios` and/or `npx expo run:android`. Requires native toolchains to be installed.
+- Install packages with `yarn`
+- Run `npx expo run:ios` and pick a platform to test
+- You can verify that the issue exists
+- To try it on old arch, open **app.json** and change the **newArchenabled** flag to false for the target platform. Run `npx expo prebuild -p ios --clean` and then `npx expo run:ios` again.
