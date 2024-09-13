@@ -1,44 +1,66 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { GestureHandlerRootView, BorderlessButton, RectButton } from "react-native-gesture-handler";
+
+function BrokenBorderlessButtonPadding() {
+  return (
+    <BorderlessButton
+      onPress={() => { }}
+      style={styles.buttonStyles}
+    >
+      <Text>Hi, this is an RNGH BorderlessButton</Text>
+    </BorderlessButton>
+  );
+}
+
+function BrokenRectButtonPadding() {
+  return (
+    <RectButton
+      onPress={() => { }}
+      style={styles.buttonStyles}
+    >
+      <Text>Hi, this is an RNGH RectButton</Text>
+    </RectButton>
+  );
+}
+
+
+function WorkingButtonPadding() {
+  return (
+    <TouchableOpacity
+      onPress={() => { }}
+      style={styles.buttonStyles}
+    >
+      <Text>Hi, this is a TouchableOpacity with identical styling</Text>
+    </TouchableOpacity>
+  );
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        colors={['#232526', '#66686a']}
-        style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
-      />
-
-      <View style={{ position: 'absolute', bottom: 50, left: 0, right: 0, alignItems: 'center' }}>
-        <Image
-          style={{ width: 100, height: 100 }}
-          contentFit="contain"
-          source="https://raw.githubusercontent.com/expo/styleguide/main/common/logos/word-mark-logo.svg"
-        />
+    <GestureHandlerRootView style={styles.container}>
+      <View style={styles.container}>
+        <BrokenBorderlessButtonPadding />
+        <View style={{ marginTop: 20 }} />
+        <WorkingButtonPadding />
+        <View style={{ marginTop: 20 }} />
+        <BrokenRectButtonPadding />
       </View>
-
-      <Image
-        style={{ width: 200, height: 200 }}
-        contentFit="contain"
-        source="https://d33wubrfki0l68.cloudfront.net/554c3b0e09cf167f0281fda839a5433f2040b349/ecfc9/img/header_logo.svg"
-      />
-
-      <Text style={{ fontSize: 22, marginTop: 15, color: '#fff' }}>
-        New Architecture: <Text style={{ fontWeight: 'bold' }}>Enabled</Text>
-      </Text>
-
-      < StatusBar style="auto" />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
+  buttonStyles: {
+    paddingHorizontal: 30,
+    paddingVertical: 30,
+    backgroundColor: "#ccc",
+    borderBottomWidth: 2,
+    borderBottomColor: 'green'
+  }
 });
